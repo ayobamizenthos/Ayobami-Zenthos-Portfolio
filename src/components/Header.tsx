@@ -12,9 +12,9 @@ const menuItems = [
   {
     label: "Technical Writing Portfolio",
     submenu: [
+      { label: "Portfolio Blog", href: "/blog", external: false },
       { label: "Hashnode", href: "https://zenthosinsights.hashnode.dev", external: true },
       { label: "Medium", href: "https://medium.com/@ayobamizenthos", external: true },
-      { label: "Avana", href: "https://avana.io/@ayobamizenthos", external: true },
     ]
   },
 ];
@@ -26,7 +26,7 @@ export function Header() {
     if (item.action) {
       item.action();
       setMobileMenuOpen(false);
-    } else if (item.href && item.external) {
+    } else if ('href' in item && item.external) {
       window.open(item.href, "_blank", "noopener,noreferrer");
     }
   };
@@ -47,10 +47,10 @@ export function Header() {
                     variant="ghost"
                     className="text-sm font-medium hover:text-primary transition-colors"
                     onClick={() => handleMenuClick(item)}
-                    asChild={item.external}
+                    asChild={'external' in item && (item as any).external}
                   >
-                    {item.external ? (
-                      <a href={item.href} target="_blank" rel="noopener noreferrer">
+                    {'external' in item && (item as any).external ? (
+                      <a href={(item as any).href} target="_blank" rel="noopener noreferrer">
                         {item.label}
                       </a>
                     ) : (
@@ -82,10 +82,10 @@ export function Header() {
                     variant="ghost"
                     className="justify-start text-base font-medium hover:text-primary hover:bg-primary/5 transition-all duration-300 py-6"
                     onClick={() => handleMenuClick(item)}
-                    asChild={item.external}
+                    asChild={'external' in item && (item as any).external}
                   >
-                    {item.external ? (
-                      <a href={item.href} target="_blank" rel="noopener noreferrer">
+                    {'external' in item && (item as any).external ? (
+                      <a href={(item as any).href} target="_blank" rel="noopener noreferrer">
                         {item.label}
                       </a>
                     ) : (
