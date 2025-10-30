@@ -1,15 +1,22 @@
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const menuItems = [
   { label: "Services", action: () => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" }) },
   { label: "Works", action: () => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" }) },
-  { label: "Zenthos Insights (Blog)", href: "https://zenthosinsights.hashnode.dev", external: true },
-  { label: "Technical Writing Portfolio", href: "https://zenthosinsights.hashnode.dev", external: true },
-  { label: "Zenthos Lab", href: "https://zenthoslab.lovable.app", external: true },
+  { label: "Blog", action: () => window.location.href = "/blog" },
+  {
+    label: "Technical Writing Portfolio",
+    submenu: [
+      { label: "Hashnode", href: "https://zenthosinsights.hashnode.dev", external: true },
+      { label: "Medium", href: "https://medium.com/@ayobamizenthos", external: true },
+      { label: "Avana", href: "https://avana.io/@ayobamizenthos", external: true },
+    ]
+  },
 ];
 
 export function Header() {

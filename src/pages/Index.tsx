@@ -7,7 +7,9 @@ import { SectionDivider } from "@/components/SectionDivider";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
 import { Work } from "@/components/sections/Work";
-import { Stacks } from "@/components/sections/Stacks";
+import { Skills } from "@/components/sections/Skills";
+import { WhyChoose } from "@/components/sections/WhyChoose";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { Blog } from "@/components/sections/Blog";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
@@ -28,9 +30,13 @@ const Index = () => {
           <SectionDivider />
           <Work />
           <SectionDivider />
-          <Stacks />
+          <Skills />
+          <SectionDivider />
+          <WhyChoose />
           <SectionDivider />
           <Blog />
+          <SectionDivider />
+          <Testimonials />
           <SectionDivider />
           <Contact />
         </main>

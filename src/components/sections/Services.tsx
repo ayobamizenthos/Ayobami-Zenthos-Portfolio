@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Palette, Check, RefreshCw, Search, Settings, PenTool } from "lucide-react";
+import { Sparkles, Check, Code, BarChart3, Wrench, Palette, Target } from "lucide-react";
 import { useState } from "react";
 import {
   Dialog,
@@ -11,34 +11,40 @@ import { Mail } from "lucide-react";
 
 const services = [
   {
-    title: "Website Development",
-    icon: RefreshCw,
-    description: "High-performance websites built with modern technology, optimized for speed and conversions.",
-    bonuses: ["Responsive design", "Fast load times", "SEO-ready structure", "Content management"],
+    title: "Full-Stack Development",
+    icon: Code,
+    description: "End-to-end web applications with modern technologies and scalable architecture.",
+    bonuses: ["Frontend & Backend Development", "Database Design & Integration", "API Development & Testing", "Performance Optimization"],
   },
   {
     title: "UI/UX Design",
-    icon: PenTool,
-    description: "Intuitive, user-centered interfaces that look great and feel effortless.",
-    bonuses: ["User research & testing", "Wireframing & prototyping", "Responsive design systems", "Accessibility standards"],
+    icon: Sparkles,
+    description: "User-centered interfaces that combine aesthetics with exceptional functionality.",
+    bonuses: ["User Research & Testing", "Wireframing & Prototyping", "Design Systems & Guidelines", "Accessibility Compliance"],
   },
   {
-    title: "Branding & Identity",
+    title: "Digital Branding",
     icon: Palette,
-    description: "Comprehensive brand systems that establish market presence and foster authentic connections.",
-    bonuses: ["Visual identity creation", "Brand strategy documentation", "Color system development", "Typographic standards"],
+    description: "Comprehensive brand identity that establishes market presence and recognition.",
+    bonuses: ["Brand Strategy Development", "Visual Identity Design", "Brand Guidelines Creation", "Cross-Platform Consistency"],
   },
   {
-    title: "SEO & Optimization",
-    icon: Search,
-    description: "Get higher ranking and faster performance across all devices.",
-    bonuses: ["On-page SEO implementation", "Speed optimization", "Mobile responsiveness", "Analytics integration"],
+    title: "SEO & Performance",
+    icon: BarChart3,
+    description: "Data-driven optimization for better visibility and faster user experiences.",
+    bonuses: ["Technical SEO Implementation", "Performance Optimization", "Mobile Responsiveness", "Analytics & Reporting"],
   },
   {
-    title: "Maintenance & Support",
-    icon: Settings,
-    description: "Ongoing updates, bug fixes, and performance tuning to keep your site running smoothly.",
-    bonuses: ["Regular updates", "Bug fixing & testing", "Performance monitoring", "Technical support"],
+    title: "Product Management",
+    icon: Target,
+    description: "Strategic planning and execution to drive successful product development.",
+    bonuses: ["Product Strategy Planning", "Roadmap Development", "Feature Prioritization", "Stakeholder Management"],
+  },
+  {
+    title: "Technical Support",
+    icon: Wrench,
+    description: "Ongoing maintenance and optimization to ensure peak performance.",
+    bonuses: ["Regular Updates & Patches", "Bug Fixing & Monitoring", "Security Enhancements", "Performance Tuning"],
   },
 ];
 
@@ -60,36 +66,63 @@ export function Services() {
 
         {/* Service Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => {
+          {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <div
                 key={service.title}
-                className="bg-card rounded-3xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2 space-y-6"
+                className="bg-card rounded-3xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden min-h-[500px] flex flex-col"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
-                  <Icon className="w-7 h-7 text-primary" />
-                </div>
-                
-                <h3 className="text-2xl font-bold">{service.title}</h3>
+                {/* Background Pattern */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
 
-                <p className="text-muted-foreground">{service.description}</p>
-
-                <div className="space-y-2">
-                  {service.bonuses.map((bonus) => (
-                    <div key={bonus} className="flex items-center gap-2">
-                      <Check className="w-5 h-5 text-secondary" />
-                      <span className="text-sm">{bonus}</span>
+                <div className="relative z-10 h-full flex flex-col">
+                  <div className="flex-1 space-y-6">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Icon className="w-8 h-8 text-primary" />
                     </div>
-                  ))}
+  
+                    <div className="space-y-3">
+                      <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed text-sm">
+                        {service.description}
+                      </p>
+                    </div>
+  
+                    <div className="space-y-3 flex-1">
+                      <h4 className="font-semibold text-foreground text-sm uppercase tracking-wider">
+                        What's Included
+                      </h4>
+                      <div className="space-y-2">
+                        {service.bonuses.map((bonus, bonusIndex) => (
+                          <div
+                            key={bonus}
+                            className="flex items-center gap-3"
+                            style={{ animationDelay: `${(index * 100) + (bonusIndex * 50)}ms` }}
+                          >
+                            <div className="w-5 h-5 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                              <Check className="w-3 h-3 text-secondary" />
+                            </div>
+                            <span className="text-sm text-muted-foreground">{bonus}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+  
+                  <Button
+                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground rounded-full font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 mt-6"
+                    onClick={() => setShowContactDialog(true)}
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      Discuss Project
+                      <Mail className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </Button>
                 </div>
-
-                <Button 
-                  className="w-full bg-foreground text-background rounded-full hover:shadow-glow"
-                  onClick={() => setShowContactDialog(true)}
-                >
-                  Discuss Project
-                </Button>
               </div>
             );
           })}
