@@ -43,7 +43,7 @@ const allBlogPosts = [
       <p>To anyone starting their own journey: embrace the struggle, seek mentorship, build consistently, and never stop learning. The path from Lagos apartment to global developer is challenging, but incredibly rewarding.</p>
     `,
     readTime: "7 min read",
-    date: "2024-10-28",
+    date: "2025-01-28",
     featured: true
   },
   {
@@ -89,7 +89,7 @@ const allBlogPosts = [
       <p>I'm optimistic about what the next decade holds. African AI has the potential not just to solve local problems, but to contribute to global AI advancement. The key is balancing innovation with responsibility, ensuring AI serves humanity's best interests.</p>
     `,
     readTime: "8 min read",
-    date: "2024-10-25",
+    date: "2025-01-25",
     featured: true
   },
   {
@@ -142,7 +142,7 @@ const allBlogPosts = [
       <p>The next generation of African unicorns will emerge from this understanding, creating not just successful companies, but models for how entrepreneurship can drive development across emerging markets worldwide.</p>
     `,
     readTime: "9 min read",
-    date: "2024-10-22",
+    date: "2025-01-22",
     featured: true
   },
   {
