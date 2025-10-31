@@ -5,7 +5,19 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
-const menuItems = [
+interface MenuItem {
+  label: string;
+  action?: () => void;
+  submenu?: SubMenuItem[];
+}
+
+interface SubMenuItem {
+  label: string;
+  href: string;
+  external: boolean;
+}
+
+const menuItems: MenuItem[] = [
   { label: "Services", action: () => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" }) },
   { label: "Works", action: () => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" }) },
   { label: "Blog", action: () => window.location.href = "/blog" },
@@ -22,12 +34,13 @@ const menuItems = [
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleMenuClick = (item: typeof menuItems[0]) => {
+  const handleMenuClick = (item: MenuItem) => {
     if (item.action) {
       item.action();
       setMobileMenuOpen(false);
-    } else if ('href' in item && item.external) {
-      window.open(item.href, "_blank", "noopener,noreferrer");
+    } else if (item.submenu) {
+      // Handle submenu items - this would need additional logic for dropdown
+      setMobileMenuOpen(false);
     }
   };
 
@@ -47,15 +60,8 @@ export function Header() {
                     variant="ghost"
                     className="text-sm font-medium hover:text-primary transition-colors"
                     onClick={() => handleMenuClick(item)}
-                    asChild={'external' in item && (item as any).external}
                   >
-                    {'external' in item && (item as any).external ? (
-                      <a href={(item as any).href} target="_blank" rel="noopener noreferrer">
-                        {item.label}
-                      </a>
-                    ) : (
-                      <span>{item.label}</span>
-                    )}
+                    {item.label}
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -82,15 +88,8 @@ export function Header() {
                     variant="ghost"
                     className="justify-start text-base font-medium hover:text-primary hover:bg-primary/5 transition-all duration-300 py-6"
                     onClick={() => handleMenuClick(item)}
-                    asChild={'external' in item && (item as any).external}
                   >
-                    {'external' in item && (item as any).external ? (
-                      <a href={(item as any).href} target="_blank" rel="noopener noreferrer">
-                        {item.label}
-                      </a>
-                    ) : (
-                      <span>{item.label}</span>
-                    )}
+                    {item.label}
                   </Button>
                 ))}
               </nav>

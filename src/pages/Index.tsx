@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Navigation } from "@/components/Navigation";
@@ -17,6 +18,49 @@ import { Footer } from "@/components/sections/Footer";
 const Index = () => {
   return (
     <ThemeProvider>
+      <Helmet>
+        <title>Ayobami Zenthos - Full-Stack Developer & Product Manager</title>
+        <meta name="description" content="Full-Stack Developer & Product Manager specializing in React, Node.js, and digital product strategy. Building innovative solutions for the African tech ecosystem." />
+        <meta name="keywords" content="full-stack developer, product manager, React, Node.js, web development, mobile apps, Lagos, Nigeria, African tech" />
+        <link rel="canonical" href="https://ayobamizenthos.github.io/Ayobami-Zenthos-Portfolio/" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Ayobami Zenthos - Full-Stack Developer & Product Manager" />
+        <meta property="og:description" content="Full-Stack Developer & Product Manager crafting digital experiences through strategic web design, distinctive brand identity, and intuitive mobile applications." />
+        <meta property="og:url" content="https://ayobamizenthos.github.io/Ayobami-Zenthos-Portfolio/" />
+        <meta property="og:type" content="website" />
+
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Ayobami Zenthos",
+            "jobTitle": "Full-Stack Developer & Product Manager",
+            "description": "Full-Stack Developer & Product Manager specializing in React, Node.js, and digital product strategy",
+            "url": "https://ayobamizenthos.github.io/Ayobami-Zenthos-Portfolio/",
+            "sameAs": [
+              "https://linkedin.com/in/ayobamizenthos",
+              "https://github.com/ayobamizenthos",
+              "https://twitter.com/ayobamizenthos"
+            ],
+            "knowsAbout": [
+              "React",
+              "Node.js",
+              "TypeScript",
+              "Product Management",
+              "Web Development",
+              "Mobile Applications",
+              "African Tech Ecosystem"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Lagos",
+              "addressCountry": "Nigeria"
+            }
+          })}
+        </script>
+      </Helmet>
       <div className="min-h-screen w-full">
         <ScrollProgress />
         <Header />

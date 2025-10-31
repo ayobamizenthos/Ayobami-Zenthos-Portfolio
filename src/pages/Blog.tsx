@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -624,7 +625,7 @@ const allBlogPosts = [
   }
 ];
 
-const categories = ["All", "Personal Insights and projects (developer journey)", "Tech and innovation", "Global Startups", "Renewable energy", "Career growth and opportunities in tech (fellowships, internships)", "scholarships in tech and STEM fields", "Hackathons and developer challenges", "Governance and tech policy", "Upcoming tech events and conferences", "Faith and purpose"];
+const categories = ["All", "Personal Insights and projects", "Tech and innovation", "Global Startups", "Renewable energy", "Career growth and opportunities in tech", "scholarships in tech and STEM fields", "Hackathons and developer challenges", "Governance and tech policy", "Upcoming tech events and conferences", "Faith and purpose"];
 
 export function Blog() {
   const navigate = useNavigate();
@@ -633,13 +634,47 @@ export function Blog() {
 
   const filteredPosts = allBlogPosts.filter(post => {
     const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = searchTerm === "" ||
+                          post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          post.content.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <Helmet>
+        <title>Blog & Insights - Ayobami Zenthos</title>
+        <meta name="description" content="Thoughts on technology, design, and building digital products that matter. Insights from my journey as a full-stack developer and product thinker." />
+        <meta name="keywords" content="tech blog, development insights, product management, African tech, web development, software engineering" />
+        <link rel="canonical" href="https://ayobamizenthos.github.io/Ayobami-Zenthos-Portfolio/blog" />
+
+        <meta property="og:title" content="Blog & Insights - Ayobami Zenthos" />
+        <meta property="og:description" content="Thoughts on technology, design, and building digital products that matter. Insights from my journey as a full-stack developer and product thinker." />
+        <meta property="og:url" content="https://ayobamizenthos.github.io/Ayobami-Zenthos-Portfolio/blog" />
+        <meta property="og:type" content="website" />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "Ayobami Zenthos Blog",
+            "description": "Thoughts on technology, design, and building digital products that matter",
+            "url": "https://ayobamizenthos.github.io/Ayobami-Zenthos-Portfolio/blog",
+            "author": {
+              "@type": "Person",
+              "name": "Ayobami Zenthos",
+              "jobTitle": "Full-Stack Developer & Product Manager"
+            },
+            "publisher": {
+              "@type": "Person",
+              "name": "Ayobami Zenthos"
+            }
+          })}
+        </script>
+      </Helmet>
+
+      <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="bg-card border-b border-border">
         <div className="max-w-7xl mx-auto px-6 py-8">
@@ -674,7 +709,7 @@ export function Blog() {
               placeholder="Search articles..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 h-12"
+              className="pl-10 h-12 text-base w-full"
             />
           </div>
 
