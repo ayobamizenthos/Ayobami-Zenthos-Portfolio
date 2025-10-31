@@ -1,37 +1,7 @@
-const techStack = [
-  {
-    category: "Frontend",
-    technologies: [
-      { name: "React", icon: "⚛️" },
-      { name: "TypeScript", icon: "🔷" },
-      { name: "JavaScript", icon: "🟨" },
-      { name: "HTML5", icon: "🏗️" },
-      { name: "CSS3", icon: "🎨" },
-      { name: "Tailwind CSS", icon: "💨" },
-    ]
-  },
-  {
-    category: "Backend",
-    technologies: [
-      { name: "Node.js", icon: "🟢" },
-      { name: "Express.js", icon: "🚀" },
-      { name: "MySQL", icon: "🗄️" },
-      { name: "PostgreSQL", icon: "🐘" },
-      { name: "MongoDB", icon: "🍃" },
-      { name: "REST APIs", icon: "🔗" },
-    ]
-  },
-  {
-    category: "Tools & Platforms",
-    technologies: [
-      { name: "Git", icon: "📚" },
-      { name: "VS Code", icon: "💻" },
-      { name: "Figma", icon: "🎯" },
-      { name: "Vite", icon: "⚡" },
-      { name: "Docker", icon: "🐳" },
-      { name: "AWS", icon: "☁️" },
-    ]
-  }
+const technologies = [
+  "React", "TypeScript", "JavaScript", "Node.js", "Express.js", "PostgreSQL",
+  "MongoDB", "Tailwind CSS", "Git", "Figma", "Docker", "AWS", "REST APIs",
+  "HTML5", "CSS3", "MySQL", "VS Code", "Vite"
 ];
 
 
@@ -44,43 +14,37 @@ export function Skills() {
           <h2 className="text-sm font-bold tracking-widest text-primary uppercase">
             Technical Skills
           </h2>
-          <p className="text-3xl md:text-5xl font-bold text-foreground max-w-3xl mx-auto">
+          <p className="text-3xl md:text-5xl font-bold text-foreground max-w-3xl mx-auto leading-tight">
             Technologies I work with to bring ideas to life
           </p>
         </div>
 
-        {/* Tech Stack Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {techStack.map((category, categoryIndex) => (
-            <div
-              key={category.category}
-              className="bg-card rounded-3xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2"
-              style={{ animationDelay: `${categoryIndex * 200}ms` }}
-            >
-              <div className="text-center mb-8">
-                <h3 className="text-xl font-bold text-foreground mb-6">
-                  {category.category}
-                </h3>
+        {/* Animated Technologies Marquee */}
+        <div className="relative overflow-hidden py-8">
+          <div className="flex animate-marquee">
+            {/* First set of technologies */}
+            {technologies.map((tech, index) => (
+              <div
+                key={`first-${index}`}
+                className="flex-shrink-0 mx-4 px-6 py-4 rounded-2xl bg-card shadow-card border border-border/50 hover:border-primary/30 transition-all duration-300 hover:scale-105"
+              >
+                <span className="text-sm font-semibold text-foreground whitespace-nowrap">
+                  {tech}
+                </span>
               </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                {category.technologies.map((tech, techIndex) => (
-                  <div
-                    key={tech.name}
-                    className="flex flex-col items-center text-center p-4 rounded-xl bg-muted/30 hover:bg-muted/50 transition-all duration-300 hover:scale-105 group"
-                    style={{ animationDelay: `${(categoryIndex * 200) + (techIndex * 50)}ms` }}
-                  >
-                    <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">
-                      {tech.icon}
-                    </div>
-                    <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-300">
-                      {tech.name}
-                    </span>
-                  </div>
-                ))}
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {technologies.map((tech, index) => (
+              <div
+                key={`second-${index}`}
+                className="flex-shrink-0 mx-4 px-6 py-4 rounded-2xl bg-card shadow-card border border-border/50 hover:border-primary/30 transition-all duration-300 hover:scale-105"
+              >
+                <span className="text-sm font-semibold text-foreground whitespace-nowrap">
+                  {tech}
+                </span>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Additional Skills Tags */}

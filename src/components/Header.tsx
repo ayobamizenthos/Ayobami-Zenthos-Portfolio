@@ -20,13 +20,18 @@ interface SubMenuItem {
 const menuItems: MenuItem[] = [
   { label: "Services", action: () => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" }) },
   { label: "Works", action: () => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" }) },
-  { label: "Blog", action: () => window.location.href = "/blog" },
+  {
+    label: "Blog",
+    submenu: [
+      { label: "Portfolio Blog", href: "/blog", external: false },
+      { label: "Hashnode Blog", href: "https://zenthosinsights.hashnode.dev", external: true },
+    ]
+  },
   {
     label: "Technical Writing Portfolio",
     submenu: [
       { label: "Portfolio Blog", href: "/blog", external: false },
       { label: "Hashnode", href: "https://zenthosinsights.hashnode.dev", external: true },
-      { label: "Medium", href: "https://medium.com/@ayobamizenthos", external: true },
     ]
   },
 ];
@@ -54,20 +59,53 @@ export function Header() {
         <nav className="hidden md:flex items-center gap-1 justify-end flex-1">
           <TooltipProvider>
             {menuItems.map((item) => (
-              <Tooltip key={item.label}>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className="text-sm font-medium hover:text-primary transition-colors"
-                    onClick={() => handleMenuClick(item)}
-                  >
-                    {item.label}
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{item.label}</p>
-                </TooltipContent>
-              </Tooltip>
+              item.submenu ? (
+                <DropdownMenu key={item.label}>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                      onMouseEnter={() => {}} // Trigger hover state
+                    >
+                      {item.label}
+                      <ChevronDown className="w-3 h-3" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56" side="bottom" sideOffset={8}>
+                    {item.submenu.map((subItem) => (
+                      <DropdownMenuItem
+                        key={subItem.label}
+                        onClick={() => {
+                          if (subItem.external) {
+                            window.open(subItem.href, '_blank');
+                          } else {
+                            window.location.href = subItem.href;
+                          }
+                        }}
+                        className="cursor-pointer hover:bg-primary/10 hover:text-primary font-medium"
+                      >
+                        <span className="flex-1">{subItem.label}</span>
+                        {subItem.external && <span className="ml-auto text-xs text-muted-foreground">↗</span>}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Tooltip key={item.label}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="text-sm font-medium hover:text-primary transition-colors"
+                      onClick={() => handleMenuClick(item)}
+                    >
+                      {item.label}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{item.label}</p>
+                  </TooltipContent>
+                </Tooltip>
+              )
             ))}
           </TooltipProvider>
         </nav>
@@ -83,14 +121,40 @@ export function Header() {
             <SheetContent side="right" className="w-[280px] bg-background/95 backdrop-blur-xl border-border">
               <nav className="flex flex-col gap-4 mt-8">
                 {menuItems.map((item) => (
-                  <Button
-                    key={item.label}
-                    variant="ghost"
-                    className="justify-start text-base font-medium hover:text-primary hover:bg-primary/5 transition-all duration-300 py-6"
-                    onClick={() => handleMenuClick(item)}
-                  >
-                    {item.label}
-                  </Button>
+                  item.submenu ? (
+                    <div key={item.label} className="space-y-2">
+                      <div className="text-sm font-medium text-muted-foreground px-4 py-2">
+                        {item.label}
+                      </div>
+                      {item.submenu.map((subItem) => (
+                        <Button
+                          key={subItem.label}
+                          variant="ghost"
+                          className="justify-start text-sm hover:text-primary hover:bg-primary/5 transition-all duration-300 py-3 ml-4 w-[calc(100%-2rem)]"
+                          onClick={() => {
+                            if (subItem.external) {
+                              window.open(subItem.href, '_blank');
+                            } else {
+                              window.location.href = subItem.href;
+                            }
+                            setMobileMenuOpen(false);
+                          }}
+                        >
+                          {subItem.label}
+                          {subItem.external && <span className="ml-auto text-xs">↗</span>}
+                        </Button>
+                      ))}
+                    </div>
+                  ) : (
+                    <Button
+                      key={item.label}
+                      variant="ghost"
+                      className="justify-start text-base font-medium hover:text-primary hover:bg-primary/5 transition-all duration-300 py-6"
+                      onClick={() => handleMenuClick(item)}
+                    >
+                      {item.label}
+                    </Button>
+                  )
                 ))}
               </nav>
             </SheetContent>

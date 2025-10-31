@@ -5,7 +5,7 @@ const socials = [
   { name: "X", icon: Twitter, url: "https://x.com/ayobamizenthos?t=z37l1PxtK6hyvLaM4u7jSg&s=09" },
   { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/in/ayobamirufai/" },
   { name: "GitHub", icon: Github, url: "https://github.com/ayobamizenthos" },
-  { name: "Email", icon: Mail, url: "mailto:ayobamizenthos@gmail.com" },
+  { name: "Email", icon: Mail, url: "mailto:contact@ayobamizenthos.com" },
 ];
 
 export function SocialSidebar() {

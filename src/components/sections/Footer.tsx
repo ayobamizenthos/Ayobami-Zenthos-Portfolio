@@ -1,10 +1,11 @@
-import { Linkedin, Instagram, Youtube, Dribbble } from "lucide-react";
+import { Linkedin, Instagram, Twitter, Github, Mail } from "lucide-react";
 
 const socials = [
-  { name: "LinkedIn", icon: Linkedin, url: "#" },
-  { name: "Instagram", icon: Instagram, url: "#" },
-  { name: "Dribbble", icon: Dribbble, url: "#" },
-  { name: "YouTube", icon: Youtube, url: "#" },
+  { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/in/ayobamirufai/" },
+  { name: "GitHub", icon: Github, url: "https://github.com/ayobamizenthos" },
+  { name: "Instagram", icon: Instagram, url: "https://www.instagram.com/ayobamizenthos/" },
+  { name: "Twitter", icon: Twitter, url: "https://x.com/ayobamizenthos?t=z37l1PxtK6hyvLaM4u7jSg&s=09" },
+  { name: "Gmail", icon: Mail, url: "mailto:contact@ayobamizenthos.com" },
 ];
 
 export function Footer() {

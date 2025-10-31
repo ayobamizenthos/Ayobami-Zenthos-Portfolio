@@ -19,7 +19,7 @@ const Index = () => {
   return (
     <ThemeProvider>
       <Helmet>
-        <title>Ayobami Zenthos - Full-Stack Developer & Product Manager</title>
+        <title>Ayobami Zenthos</title>
         <meta name="description" content="Full-Stack Developer & Product Manager specializing in React, Node.js, and digital product strategy. Building innovative solutions for the African tech ecosystem." />
         <meta name="keywords" content="full-stack developer, product manager, React, Node.js, web development, mobile apps, Lagos, Nigeria, African tech" />
         <link rel="canonical" href="https://ayobamizenthos.github.io/Ayobami-Zenthos-Portfolio/" />

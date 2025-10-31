@@ -42,11 +42,11 @@ export function WhyChoose() {
           <h2 className="text-sm font-bold tracking-widest text-primary uppercase">
             About Me
           </h2>
-          <p className="text-3xl md:text-5xl font-bold text-foreground max-w-3xl mx-auto">
+          <p className="text-3xl md:text-5xl font-bold text-foreground max-w-3xl mx-auto leading-tight">
             Passionate about creating digital experiences that matter.
           </p>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            I'm a full-stack developer and product designer based in Lagos, Nigeria, with a passion for
+            I'm a full-stack developer and product designer with a passion for
             crafting innovative digital solutions that drive business growth and enhance user experiences.
           </p>
         </div>
@@ -61,9 +61,6 @@ export function WhyChoose() {
                 className="bg-card rounded-3xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
-                  <Icon className="w-7 h-7 text-primary" />
-                </div>
                 <h3 className="text-xl font-bold text-foreground mb-3">{point.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{point.description}</p>
               </div>
@@ -77,7 +74,7 @@ export function WhyChoose() {
             Ready to bring your digital vision to life?
           </p>
           <a
-            href="mailto:ayobamizenthos@gmail.com"
+            href="mailto:contact@ayobamizenthos.com"
             className="inline-block bg-gradient-to-r from-primary via-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105"
           >
             Let's Work Together

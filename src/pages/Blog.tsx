@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Search, Calendar, Clock } from "lucide-react";
 
-const allBlogPosts = [
+export const allBlogPosts = [
   {
     id: 1,
     title: "From Lagos to Code: My Journey as a Self-Taught Developer",
@@ -622,6 +622,47 @@ const allBlogPosts = [
     `,
     readTime: "7 min read",
     date: "2024-10-05"
+  },
+  {
+    id: 11,
+    title: "Inside AVZDAX: Building Africa's Proactive Security Future",
+    category: "Technology",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop",
+    excerpt: "Exploring how AVZDAX is pioneering PeaceTech - intelligent surveillance systems that prevent crime before it happens, not just record it afterward.",
+    content: `
+      <p>Last weekend, I had an eye-opening conversation with Gbenga A. Sosan, the Founder and CEO of AVZDAX, one of Africa's most ambitious security-tech companies. What struck me wasn't just the scale of their vision — it was the clarity of their mission: to make security proactive, not reactive.</p>
+
+      <p>Gbenga's story began with a moment that would reshape how he saw technology's role in safety. Years ago, his boss's office was robbed. The surveillance system worked — but only after the harm had been done. All they could do was watch the replay. That experience lit a spark: what if technology could prevent crime before it happens, instead of recording it afterward?</p>
+
+      <p>That single question became the foundation of AVZDAX — a company now pioneering what Gbenga calls "PeaceTech." Their goal is bold: to build intelligent surveillance systems that don't just capture evidence but anticipate threats in real-time and neutralize them before they escalate.</p>
+
+      <p>During our discussion, we explored how AVZDAX's proactive surveillance technologies combine AI-driven threat intelligence, edge-based vision systems, and autonomous response mechanisms. Their suite of products — including PRIMUS, NEST, Teletraan, TRION, and Sentinel — aims to detect unusual behavioral patterns, analyze risks, and act preemptively across environments ranging from corporate offices to critical national infrastructure.</p>
+
+      <p>What's even more inspiring is that this innovation is happening right here in Africa. Gbenga and his team are proving that groundbreaking security technology doesn't have to come from Silicon Valley or Shenzhen — it can emerge from Lagos, crafted by engineers who understand the realities of our environment and the urgency of proactive safety.</p>
+
+      <p>AVZDAX isn't chasing trends; they're redefining the foundation of security. Their philosophy challenges the global norm — moving from the traditional "after-the-fact" surveillance mindset to a future where systems think ahead, learn from patterns, and keep people safe before danger unfolds.</p>
+
+      <p>In an era where technology often reacts too late, AVZDAX is quietly building tools that could make prevention the new standard. It's not just innovation; it's transformation — born from necessity, powered by vision, and grounded in Africa's resilience.</p>
+
+      <h2>🔗 Connect with AVZDAX</h2>
+      <ul>
+        <li><strong>Website:</strong> <a href="https://www.avzdax.com" target="_blank" rel="noopener noreferrer">www.avzdax.com</a></li>
+        <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/company/avzdaxtech" target="_blank" rel="noopener noreferrer">linkedin.com/company/avzdaxtech</a></li>
+        <li><strong>Twitter / X:</strong> <a href="https://twitter.com/avzdax" target="_blank" rel="noopener noreferrer">twitter.com/avzdax</a></li>
+        <li><strong>Facebook:</strong> <a href="https://facebook.com/avzdaxng" target="_blank" rel="noopener noreferrer">facebook.com/avzdaxng</a></li>
+        <li><strong>Instagram:</strong> <a href="https://instagram.com/avzdaxtech" target="_blank" rel="noopener noreferrer">instagram.com/avzdaxtech</a></li>
+      </ul>
+
+      <h2>Connect with the Founder — Gbenga A. Sosan</h2>
+      <ul>
+        <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/gbengasosan" target="_blank" rel="noopener noreferrer">linkedin.com/in/gbengasosan</a></li>
+        <li><strong>Twitter / X:</strong> <a href="https://twitter.com/gbengasosan" target="_blank" rel="noopener noreferrer">twitter.com/gbengasosan</a></li>
+        <li><strong>Instagram:</strong> <a href="https://instagram.com/p/DItRf4VgfmT/" target="_blank" rel="noopener noreferrer">instagram.com/p/DItRf4VgfmT/</a></li>
+      </ul>
+    `,
+    readTime: "5 min read",
+    date: "2024-11-01",
+    featured: true
   }
 ];
 
@@ -799,5 +840,6 @@ export function Blog() {
         )}
       </div>
     </div>
+    </>
   );
 }

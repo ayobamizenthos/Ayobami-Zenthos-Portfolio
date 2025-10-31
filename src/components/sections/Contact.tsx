@@ -1,4 +1,4 @@
-import { Linkedin, Instagram, Youtube, Twitter, Mail, Phone, MapPin, Send } from "lucide-react";
+import { Linkedin, Instagram, Youtube, Twitter, Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,7 @@ const socials = [
   { name: "X (Twitter)", icon: Twitter, url: "https://x.com/ayobamizenthos?t=z37l1PxtK6hyvLaM4u7jSg&s=09" },
   { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/in/ayobamirufai/" },
   { name: "YouTube", icon: Youtube, url: "#" },
-  { name: "Instagram", icon: Instagram, url: "#" },
+  { name: "Instagram", icon: Instagram, url: "https://www.instagram.com/ayobamizenthos/" },
 ];
 
 export function Contact() {
@@ -23,22 +23,52 @@ export function Contact() {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const { toast } = useToast();
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Please enter a valid email";
+    if (!formData.message.trim()) newErrors.message = "Message is required";
+    if (formData.message.trim().length < 10) newErrors.message = "Message must be at least 10 characters";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      toast({
+        title: "Validation Error",
+        description: "Please check the form and try again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // Create mailto link with form data
-    const subject = `Project Inquiry from ${formData.name}`;
-    const body = `
+      // Create mailto link with form data
+      const subject = `Project Inquiry from ${formData.name}`;
+      const body = `
 Name: ${formData.name}
 Email: ${formData.email}
 Project Type: ${formData.projectType}
@@ -47,17 +77,34 @@ Timeline: ${formData.timeline}
 
 Message:
 ${formData.message}
-    `.trim();
+      `.trim();
 
-    const mailtoLink = `mailto:ayobamizenthos@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
+      const mailtoLink = `mailto:contact@ayobamizenthos.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoLink;
 
-    toast({
-      title: "Form submitted successfully!",
-      description: "Your email client should open with the pre-filled message.",
-    });
+      toast({
+        title: "Form submitted successfully!",
+        description: "Your email client should open with the pre-filled message.",
+      });
 
-    setIsSubmitting(false);
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        projectType: '',
+        budget: '',
+        timeline: '',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -67,7 +114,7 @@ ${formData.message}
         {/* Header */}
         <div className="text-center space-y-3 mb-12">
           <h2 className="text-sm font-bold tracking-widest text-primary uppercase">Contact</h2>
-          <p className="text-3xl md:text-4xl font-bold text-foreground">
+          <p className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
             Let's build something great together.
           </p>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -82,26 +129,43 @@ ${formData.message}
               {/* Name and Email */}
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">Name *</label>
+                  <label htmlFor="contact-name" className="text-sm font-medium text-foreground">Name *</label>
                   <Input
+                    id="contact-name"
                     type="text"
                     placeholder="Your full name"
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
                     required
-                    className="h-12"
+                    className={`h-12 ${errors.name ? 'border-destructive' : ''}`}
+                    aria-describedby={errors.name ? "name-error" : undefined}
+                    aria-invalid={!!errors.name}
                   />
+                  {errors.name && (
+                    <p id="name-error" className="text-sm text-destructive flex items-center gap-1 mt-1" role="alert">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">Email *</label>
+                  <label htmlFor="contact-email" className="text-sm font-medium text-foreground">Email *</label>
                   <Input
+                    id="contact-email"
                     type="email"
                     placeholder="your.email@example.com"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     required
-                    className="h-12"
+                    className={`h-12 ${errors.email ? 'border-destructive' : ''}`}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                   />
+                  {errors.email && (
+                    <p id="email-error" className="text-sm text-destructive flex items-center gap-1" role="alert">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -114,12 +178,12 @@ ${formData.message}
                       <SelectValue placeholder="Select project type" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="web-development">Web Development</SelectItem>
-                      <SelectItem value="mobile-app">Mobile App</SelectItem>
+                      <SelectItem value="full-stack-development">Full-Stack Development</SelectItem>
                       <SelectItem value="ui-ux-design">UI/UX Design</SelectItem>
-                      <SelectItem value="branding">Branding</SelectItem>
+                      <SelectItem value="social-media-management-branding">Social Media Management & Branding</SelectItem>
+                      <SelectItem value="seo-performance">SEO & Performance</SelectItem>
                       <SelectItem value="product-management">Product Management</SelectItem>
-                      <SelectItem value="consultation">Consultation</SelectItem>
+                      <SelectItem value="technical-support">Technical Support</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
@@ -162,14 +226,22 @@ ${formData.message}
 
               {/* Message */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Message *</label>
+                <label htmlFor="contact-message" className="text-sm font-medium text-foreground">Message *</label>
                 <Textarea
+                  id="contact-message"
                   placeholder="Tell me about your project, goals, and any specific requirements..."
                   value={formData.message}
                   onChange={(e) => handleInputChange('message', e.target.value)}
                   required
-                  className="min-h-32 resize-none"
+                  className={`min-h-32 resize-none ${errors.message ? 'border-destructive' : ''}`}
+                  aria-describedby={errors.message ? "message-error" : undefined}
                 />
+                {errors.message && (
+                  <p id="message-error" className="text-sm text-destructive flex items-center gap-1" role="alert">
+                    <AlertCircle className="w-4 h-4" />
+                    {errors.message}
+                  </p>
+                )}
               </div>
 
               {/* Submit Button */}
@@ -199,24 +271,18 @@ ${formData.message}
             <div className="bg-card rounded-3xl p-6 md:p-8 shadow-card">
               <h3 className="text-xl font-bold text-foreground mb-6">Get in Touch</h3>
               <div className="space-y-4">
-                <div className="flex items-center gap-4">
+                <a
+                  href="mailto:contact@ayobamizenthos.com"
+                  className="flex items-center gap-4 cursor-pointer hover:bg-primary/5 rounded-xl p-2 transition-colors duration-300"
+                >
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Email</p>
-                    <p className="text-muted-foreground">ayobamizenthos@gmail.com</p>
+                    <p className="text-muted-foreground">contact@ayobamizenthos.com</p>
                   </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">Location</p>
-                    <p className="text-muted-foreground">Lagos, Nigeria</p>
-                  </div>
-                </div>
+                </a>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                     <Phone className="w-6 h-6 text-primary" />

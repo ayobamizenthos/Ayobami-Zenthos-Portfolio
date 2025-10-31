@@ -23,10 +23,10 @@ const services = [
     bonuses: ["User Research & Testing", "Wireframing & Prototyping", "Design Systems & Guidelines", "Accessibility Compliance"],
   },
   {
-    title: "Digital Branding",
+    title: "Social Media Management & Branding",
     icon: Palette,
-    description: "Comprehensive brand identity that establishes market presence and recognition.",
-    bonuses: ["Brand Strategy Development", "Visual Identity Design", "Brand Guidelines Creation", "Cross-Platform Consistency"],
+    description: "Comprehensive brand identity and social media strategy that establishes market presence and engagement.",
+    bonuses: ["Brand Strategy Development", "Visual Identity Design", "Social Media Management", "Content Strategy & Creation"],
   },
   {
     title: "SEO & Performance",
@@ -59,8 +59,8 @@ export function Services() {
           <h2 className="text-sm font-bold tracking-widest text-primary uppercase">
             Core Services
           </h2>
-          <p className="text-3xl md:text-5xl font-bold text-foreground max-w-3xl mx-auto">
-            Specialized design solutions that accelerate growth and elevate your market position.
+          <p className="text-3xl md:text-5xl font-bold text-foreground max-w-3xl mx-auto leading-tight">
+            Comprehensive solutions that drive business growth and enhance digital presence.
           </p>
         </div>
 
@@ -79,10 +79,6 @@ export function Services() {
 
                 <div className="relative z-10 h-full flex flex-col">
                   <div className="flex-1 space-y-6">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-8 h-8 text-primary" />
-                    </div>
-  
                     <div className="space-y-3">
                       <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                         {service.title}
@@ -113,15 +109,13 @@ export function Services() {
                     </div>
                   </div>
   
-                  <Button
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground rounded-full font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 mt-6"
-                    onClick={() => setShowContactDialog(true)}
+                  <a
+                    href="mailto:contact@ayobamizenthos.com?subject=Project Inquiry&body=Hi Ayobami,%0A%0AI'd like to discuss a project with you.%0A%0AProject Type: [Please specify]%0ABudget: [Please specify]%0ATimeline: [Please specify]%0A%0ADetails:%0A[Please provide project details]"
+                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground rounded-full font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 mt-6 inline-flex items-center justify-center gap-2"
                   >
-                    <span className="flex items-center justify-center gap-2">
-                      Discuss Project
-                      <Mail className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    </span>
-                  </Button>
+                    Discuss Project
+                    <Mail className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </a>
                 </div>
               </div>
             );
@@ -140,12 +134,12 @@ export function Services() {
           </DialogHeader>
           <div className="flex justify-center py-6">
             <a
-              href="mailto:ayobamizenthos@gmail.com"
+              href="mailto:contact@ayobamizenthos.com"
               className="group flex flex-col items-center gap-4 p-8 bg-gradient-to-br from-primary/10 to-primary/5 hover:from-primary/20 hover:to-primary/10 border-2 border-primary/20 hover:border-primary/40 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
             >
               <Mail className="w-16 h-16 text-primary transition-transform duration-300 group-hover:scale-110" />
               <span className="text-base font-semibold text-foreground">Email Me</span>
-              <span className="text-xs text-muted-foreground">ayobamizenthos@gmail.com</span>
+              <span className="text-xs text-muted-foreground">contact@ayobamizenthos.com</span>
             </a>
           </div>
         </DialogContent>

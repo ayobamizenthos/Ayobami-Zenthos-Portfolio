@@ -33,13 +33,13 @@ export function Hero() {
               </div>
 
               {/* Tagline */}
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
-                Crafting digital experiences through strategic web design, distinctive brand identity, and intuitive mobile applications.
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg font-medium">
+                Crafting digital experiences through strategic web design, distinctive brand identity, and intuitive user interfaces.
               </p>
 
               {/* CTA Button - Modern with gradient */}
               <a
-                href="mailto:ayobamizenthos@gmail.com"
+                href="mailto:contact@ayobamizenthos.com"
                 className="group relative inline-block bg-gradient-to-r from-primary via-primary to-primary/80 text-primary-foreground px-10 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden"
               >
                 <span className="relative z-10">Contact Me</span>

@@ -1,5 +1,4 @@
 import { Star, Quote } from "lucide-react";
-import { useState, useEffect } from "react";
 
 const testimonials = [
   {
@@ -53,157 +52,92 @@ const testimonials = [
 ];
 
 export function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-        setIsAnimating(false);
-      }, 300);
-    }, 6000); // Change testimonial every 6 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const currentTestimonial = testimonials[currentIndex];
-  const nextTestimonial = testimonials[(currentIndex + 1) % testimonials.length];
-
   return (
-    <section id="testimonials" className="min-h-screen flex items-center justify-center px-6 py-20 bg-muted/30">
-      <div className="max-w-6xl w-full mx-auto">
+    <section id="testimonials" className="py-20 px-6">
+      <div className="max-w-7xl w-full mx-auto">
         {/* Header */}
-        <div className="text-center space-y-4 mb-16">
+        <div className="text-center space-y-4 mb-12">
           <h2 className="text-sm font-bold tracking-widest text-primary uppercase">
             Client Testimonials
           </h2>
-          <p className="text-3xl md:text-5xl font-bold text-foreground max-w-3xl mx-auto">
+          <p className="text-2xl md:text-4xl font-bold text-foreground max-w-3xl mx-auto leading-tight">
             What clients say about working with me
           </p>
         </div>
 
-        {/* Animated Testimonial Carousel */}
-        <div className="relative h-96 overflow-hidden">
-          {/* Current Testimonial */}
-          <div
-            className={`absolute inset-0 transition-all duration-500 ease-in-out ${
-              isAnimating ? 'opacity-0 transform translate-x-[-100px]' : 'opacity-100 transform translate-x-0'
-            }`}
-          >
-            <div className="bg-card rounded-3xl p-8 md:p-12 shadow-card hover:shadow-card-hover transition-all duration-500 relative overflow-hidden h-full flex flex-col justify-center">
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary rounded-full -translate-y-16 translate-x-16 animate-float"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-secondary rounded-full translate-y-12 -translate-x-12 animate-float" style={{ animationDelay: '2s' }}></div>
-              </div>
-
-              {/* Quote Icon */}
-              <div className="absolute top-8 right-8 opacity-10 animate-pulse">
-                <Quote className="w-12 h-12 text-primary" />
-              </div>
-
-              {/* Rating */}
-              <div className="flex items-center gap-1 mb-6">
-                {[...Array(currentTestimonial.rating)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-6 h-6 fill-yellow-400 text-yellow-400 animate-bounce"
-                    style={{ animationDelay: `${i * 200}ms`, animationDuration: '2s' }}
-                  />
-                ))}
-              </div>
-
-              {/* Content */}
-              <blockquote className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed font-medium flex-grow flex items-center">
-                "{currentTestimonial.content}"
-              </blockquote>
-
-              {/* Author */}
-              <div className="flex items-center gap-6">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center font-bold text-primary text-lg shadow-lg animate-pulse">
-                  {currentTestimonial.avatar}
-                </div>
-                <div>
-                  <div className="font-bold text-foreground text-lg">{currentTestimonial.name}</div>
-                  <div className="text-muted-foreground font-medium">
-                    {currentTestimonial.role}, {currentTestimonial.company}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Next Testimonial (Preview) */}
-          <div className="absolute inset-0 opacity-20 transform translate-x-full transition-all duration-500">
-            <div className="bg-card rounded-3xl p-8 md:p-12 shadow-card h-full flex flex-col justify-center">
-              <div className="flex items-center gap-6">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">
-                  {nextTestimonial.avatar}
-                </div>
-                <div>
-                  <div className="font-semibold text-foreground">{nextTestimonial.name}</div>
-                  <div className="text-sm text-muted-foreground">
-                    {nextTestimonial.role}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Enhanced Navigation */}
-        <div className="flex justify-center items-center gap-4 mt-8">
-          {/* Previous Button */}
-          <button
-            onClick={() => setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)}
-            className="w-10 h-10 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-card flex items-center justify-center"
-            aria-label="Previous testimonial"
-          >
-            ←
-          </button>
-
-          {/* Dots */}
-          <div className="flex gap-3">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`relative transition-all duration-300 ${
-                  index === currentIndex
-                    ? 'w-8 h-3 bg-primary rounded-full shadow-lg'
-                    : 'w-3 h-3 bg-muted-foreground/30 hover:bg-muted-foreground/50 rounded-full'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
+        {/* Horizontal Marquee Testimonials */}
+        <div className="relative overflow-hidden py-8">
+          <div className="flex animate-marquee">
+            {/* First set of testimonials */}
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={`first-${index}`}
+                className="flex-shrink-0 mx-4 bg-card rounded-2xl p-6 shadow-card border border-border/50 hover:border-primary/30 transition-all duration-300 hover:scale-105 min-w-[400px] max-w-[500px]"
               >
-                {index === currentIndex && (
-                  <div className="absolute inset-0 bg-primary rounded-full animate-ping opacity-30"></div>
-                )}
-              </button>
+                {/* Rating */}
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                    />
+                  ))}
+                </div>
+
+                {/* Content */}
+                <blockquote className="text-muted-foreground mb-6 leading-relaxed text-sm">
+                  "{testimonial.content}"
+                </blockquote>
+
+                {/* Author */}
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center font-bold text-primary shadow-lg">
+                    {testimonial.avatar}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-foreground text-sm">{testimonial.name}</div>
+                    <div className="text-muted-foreground text-xs">
+                      {testimonial.role}, {testimonial.company}
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
-          </div>
+            {/* Duplicate set for seamless loop */}
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={`second-${index}`}
+                className="flex-shrink-0 mx-4 bg-card rounded-2xl p-6 shadow-card border border-border/50 hover:border-primary/30 transition-all duration-300 hover:scale-105 min-w-[400px] max-w-[500px]"
+              >
+                {/* Rating */}
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                    />
+                  ))}
+                </div>
 
-          {/* Next Button */}
-          <button
-            onClick={() => setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)}
-            className="w-10 h-10 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-card flex items-center justify-center"
-            aria-label="Next testimonial"
-          >
-            →
-          </button>
-        </div>
+                {/* Content */}
+                <blockquote className="text-muted-foreground mb-6 leading-relaxed text-sm">
+                  "{testimonial.content}"
+                </blockquote>
 
-        {/* Progress Bar */}
-        <div className="max-w-md mx-auto mt-6">
-          <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-100 ease-linear"
-              style={{
-                width: `${((currentIndex + 1) / testimonials.length) * 100}%`,
-                animation: 'progress 6s linear infinite'
-              }}
-            ></div>
+                {/* Author */}
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center font-bold text-primary shadow-lg">
+                    {testimonial.avatar}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-foreground text-sm">{testimonial.name}</div>
+                    <div className="text-muted-foreground text-xs">
+                      {testimonial.role}, {testimonial.company}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
