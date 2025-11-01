@@ -276,7 +276,7 @@ ${formData.message}
                   className="flex items-center gap-4 cursor-pointer hover:bg-primary/5 rounded-xl p-2 transition-colors duration-300"
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-primary" />
+                    <span className="text-lg font-bold text-primary">✉</span>
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Email</p>
@@ -285,7 +285,7 @@ ${formData.message}
                 </a>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-primary" />
+                    <span className="text-lg font-bold text-primary">⏱</span>
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Response Time</p>

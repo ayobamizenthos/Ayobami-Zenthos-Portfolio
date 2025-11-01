@@ -24,10 +24,10 @@ const allBlogPosts = [
   },
   {
     id: 3,
-    title: "From Lagos to Code: My Journey as a Self-Taught Developer",
-    category: "Technology",
+    title: "From Lagos to Global: Navigating Cross-Cultural Product Development",
+    category: "Business",
     image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=450&auto=format&fit=crop&crop=center",
-    excerpt: "From Lagos streets to global tech scenes, my self-taught journey reveals the challenges, breakthroughs, and lessons learned while mastering programming without formal education.",
+    excerpt: "Working with international clients has taught me that great products transcend borders. Here's what I've learned about building for diverse audiences and adapting to different cultural contexts.",
     readTime: "5 min read",
     date: "2025-01-05"
   }
@@ -37,7 +37,7 @@ export function Blog() {
   const navigate = useNavigate();
 
   const handleReadMore = (postId: number) => {
-    navigate(`/blog/${postId}`);
+    window.open('https://zenthosinsights.hashnode.dev', '_blank');
   };
 
   return (
@@ -120,12 +120,6 @@ export function Blog() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="w-56">
-              <DropdownMenuItem
-                onClick={() => navigate('/blog')}
-                className="cursor-pointer"
-              >
-                Portfolio Blog
-              </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => window.open('https://zenthosinsights.hashnode.dev', '_blank')}
                 className="cursor-pointer"

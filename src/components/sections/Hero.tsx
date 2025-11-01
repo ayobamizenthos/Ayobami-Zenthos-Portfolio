@@ -34,7 +34,7 @@ export function Hero() {
                </div>
 
                {/* Tagline */}
-               <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground leading-relaxed max-w-xl font-medium animate-fade-in-up px-2" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
+               <p className="text-xl sm:text-2xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed max-w-xl font-medium animate-fade-in-up px-2 sm:px-0" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
                  Software Developer & Product Manager focused on building scalable, growth-driven digital solutions.
                </p>
 

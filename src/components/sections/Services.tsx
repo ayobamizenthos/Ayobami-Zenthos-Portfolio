@@ -25,11 +25,11 @@ const services = [
     bonuses: ["User Research & Testing", "Wireframing & Prototyping", "Design Systems & Guidelines", "Accessibility Compliance"],
   },
   {
-    title: "Social Media Management & Branding",
-    icon: Palette,
-    description: "Comprehensive brand identity and social media strategy that establishes market presence and engagement across African markets.",
-    technologies: ["Canva", "Hootsuite", "Google Analytics", "Content Management Systems"],
-    bonuses: ["Brand Strategy Development", "Visual Identity Design", "Social Media Management", "Content Strategy & Creation"],
+    title: "Product Management",
+    icon: Target,
+    description: "Strategic planning and execution to drive successful product development with focus on African market needs and user behaviors.",
+    technologies: ["Jira", "Figma", "Google Analytics", "Agile Methodologies"],
+    bonuses: ["Product Strategy Planning", "Roadmap Development", "Feature Prioritization", "Stakeholder Management"],
   },
   {
     title: "SEO & Performance",
@@ -39,11 +39,11 @@ const services = [
     bonuses: ["Technical SEO Implementation", "Performance Optimization", "Mobile Responsiveness", "Analytics & Reporting"],
   },
   {
-    title: "Product Management",
-    icon: Target,
-    description: "Strategic planning and execution to drive successful product development with focus on African market needs and user behaviors.",
-    technologies: ["Jira", "Figma", "Google Analytics", "Agile Methodologies"],
-    bonuses: ["Product Strategy Planning", "Roadmap Development", "Feature Prioritization", "Stakeholder Management"],
+    title: "Social Media Management & Branding",
+    icon: Palette,
+    description: "Comprehensive brand identity and social media strategy that establishes market presence and engagement across African markets.",
+    technologies: ["Canva", "Hootsuite", "Google Analytics", "Content Management Systems"],
+    bonuses: ["Brand Strategy Development", "Visual Identity Design", "Social Media Management", "Content Strategy & Creation"],
   },
   {
     title: "Technical Support",
@@ -133,7 +133,7 @@ export function Services() {
                     href="mailto:contact@ayobamizenthos.com?subject=Project Inquiry&body=Hi Ayobami,%0A%0AI'd like to discuss a project with you.%0A%0AProject Type: [Please specify]%0ABudget: [Please specify]%0ATimeline: [Please specify]%0A%0ADetails:%0A[Please provide project details]"
                     className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground rounded-full font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 inline-flex items-center justify-center gap-2 mt-6"
                   >
-                    Let's Work Together
+                    Get Quote
                     <Mail className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
                 </div>
