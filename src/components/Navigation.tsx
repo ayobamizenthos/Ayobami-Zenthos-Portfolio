@@ -53,32 +53,64 @@ export function Navigation() {
   };
 
   return (
-    <nav className="fixed left-6 top-1/2 -translate-y-1/2 z-40 block" role="navigation" aria-label="Main navigation">
-      <div className="bg-card/90 backdrop-blur-sm shadow-card rounded-full p-2 flex flex-col gap-1">
-        <TooltipProvider>
-          {navItems.map(({ id, label, icon: Icon }) => (
-            <Tooltip key={id}>
-              <TooltipTrigger asChild>
-                <button
-                  onClick={() => scrollToSection(id)}
-                  className={`relative p-3 rounded-full transition-all duration-[180ms] ease-out ${
-                    activeSection === id
-                      ? "bg-primary text-primary-foreground shadow-glow scale-110"
-                      : "hover:bg-muted text-muted-foreground hover:text-foreground hover:scale-105"
-                  }`}
-                  aria-label={label}
-                  aria-current={activeSection === id ? "page" : undefined}
-                >
-                  <Icon className="w-5 h-5" />
-                </button>
-              </TooltipTrigger>
-              <TooltipContent side="right">
-                <p>{label}</p>
-              </TooltipContent>
-            </Tooltip>
-          ))}
-        </TooltipProvider>
-      </div>
-    </nav>
+    <>
+      {/* Desktop Navigation - Vertical */}
+      <nav className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden md:block" role="navigation" aria-label="Main navigation">
+        <div className="bg-card/90 backdrop-blur-sm shadow-card rounded-full p-2 flex flex-col gap-1">
+          <TooltipProvider>
+            {navItems.map(({ id, label, icon: Icon }) => (
+              <Tooltip key={id}>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() => scrollToSection(id)}
+                    className={`relative p-3 rounded-full transition-all duration-[180ms] ease-out ${
+                      activeSection === id
+                        ? "bg-primary text-primary-foreground shadow-glow scale-110"
+                        : "hover:bg-muted text-muted-foreground hover:text-foreground hover:scale-105"
+                    }`}
+                    aria-label={label}
+                    aria-current={activeSection === id ? "page" : undefined}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent side="right">
+                  <p>{label}</p>
+                </TooltipContent>
+              </Tooltip>
+            ))}
+          </TooltipProvider>
+        </div>
+      </nav>
+
+      {/* Mobile Navigation - Horizontal Bottom */}
+      <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 md:hidden" role="navigation" aria-label="Main navigation">
+        <div className="bg-card/90 backdrop-blur-sm shadow-card rounded-full p-2 flex flex-row gap-1">
+          <TooltipProvider>
+            {navItems.map(({ id, label, icon: Icon }) => (
+              <Tooltip key={id}>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() => scrollToSection(id)}
+                    className={`relative p-4 rounded-full transition-all duration-[180ms] ease-out min-h-[48px] min-w-[48px] flex items-center justify-center ${
+                      activeSection === id
+                        ? "bg-primary text-primary-foreground shadow-glow scale-110"
+                        : "hover:bg-muted text-muted-foreground hover:text-foreground hover:scale-105"
+                    }`}
+                    aria-label={label}
+                    aria-current={activeSection === id ? "page" : undefined}
+                  >
+                    <Icon className="w-4 h-4" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent side="top">
+                  <p>{label}</p>
+                </TooltipContent>
+              </Tooltip>
+            ))}
+          </TooltipProvider>
+        </div>
+      </nav>
+    </>
   );
 }

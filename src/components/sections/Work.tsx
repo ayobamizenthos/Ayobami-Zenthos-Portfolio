@@ -8,7 +8,7 @@ const projects = [
   {
     title: "Haven Stay",
     category: "Shortlet Platform",
-    description: "Modern accommodation booking platform with seamless user experience and advanced filtering. Increased booking conversions by 40% through intuitive design.",
+    description: "Modern accommodat  bn nbion booking platform with seamless user experience and advanced filtering. Increased booking conversions by 40% through intuitive design.",
     technologies: ["React", "Node.js", "PostgreSQL", "Stripe"],
     image: havenStayImage,
     url: "https://havenstay-demo.vercel.app",
@@ -103,16 +103,15 @@ export function Work() {
                 </div>
 
                 {/* View Project Button */}
-                <a
-                  href={`mailto:contact@ayobamizenthos.com?subject=Project Inquiry: ${project.title}&body=Hi Ayobami,%0A%0AI'd like to discuss the ${project.title} project.%0A%0AProject Type: ${project.category}%0ATechnologies: ${project.technologies.join(', ')}%0A%0ADetails:%0A[Please provide your project requirements]`}
+                <button
                   className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground rounded-full font-semibold py-3 px-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 inline-flex items-center justify-center gap-2"
-                  aria-label={`Discuss ${project.title} project`}
+                  aria-label={`View ${project.title} project`}
                 >
-                  <span>Discuss Project</span>
+                  <span>View Project</span>
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
-                </a>
+                </button>
               </div>
             </article>
           ))}

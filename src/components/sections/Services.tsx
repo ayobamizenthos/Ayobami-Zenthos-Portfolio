@@ -13,59 +13,65 @@ const services = [
   {
     title: "Full-Stack Development",
     icon: Code,
-    description: "End-to-end web applications with modern technologies and scalable architecture.",
+    description: "End-to-end web applications with modern technologies and scalable architecture, specializing in African tech ecosystem solutions.",
+    technologies: ["React", "Node.js", "TypeScript", "PostgreSQL"],
     bonuses: ["Frontend & Backend Development", "Database Design & Integration", "API Development & Testing", "Performance Optimization"],
   },
   {
     title: "UI/UX Design",
     icon: Sparkles,
-    description: "User-centered interfaces that combine aesthetics with exceptional functionality.",
+    description: "User-centered interfaces that combine aesthetics with exceptional functionality, designed for diverse African user experiences.",
+    technologies: ["Figma", "Adobe Creative Suite", "Prototyping Tools", "Design Systems"],
     bonuses: ["User Research & Testing", "Wireframing & Prototyping", "Design Systems & Guidelines", "Accessibility Compliance"],
   },
   {
     title: "Social Media Management & Branding",
     icon: Palette,
-    description: "Comprehensive brand identity and social media strategy that establishes market presence and engagement.",
+    description: "Comprehensive brand identity and social media strategy that establishes market presence and engagement across African markets.",
+    technologies: ["Canva", "Hootsuite", "Google Analytics", "Content Management Systems"],
     bonuses: ["Brand Strategy Development", "Visual Identity Design", "Social Media Management", "Content Strategy & Creation"],
   },
   {
     title: "SEO & Performance",
     icon: BarChart3,
-    description: "Data-driven optimization for better visibility and faster user experiences.",
+    description: "Data-driven optimization for better visibility and faster user experiences, optimized for African internet infrastructure.",
+    technologies: ["Google Search Console", "PageSpeed Insights", "Core Web Vitals", "Mobile-First Design"],
     bonuses: ["Technical SEO Implementation", "Performance Optimization", "Mobile Responsiveness", "Analytics & Reporting"],
   },
   {
     title: "Product Management",
     icon: Target,
-    description: "Strategic planning and execution to drive successful product development.",
+    description: "Strategic planning and execution to drive successful product development with focus on African market needs and user behaviors.",
+    technologies: ["Jira", "Figma", "Google Analytics", "Agile Methodologies"],
     bonuses: ["Product Strategy Planning", "Roadmap Development", "Feature Prioritization", "Stakeholder Management"],
   },
   {
     title: "Technical Support",
     icon: Wrench,
-    description: "Ongoing maintenance and optimization to ensure peak performance.",
+    description: "Ongoing maintenance and optimization to ensure peak performance, with 24/7 monitoring for critical African business operations.",
+    technologies: ["Monitoring Tools", "CI/CD Pipelines", "Security Frameworks", "Performance Analytics"],
     bonuses: ["Regular Updates & Patches", "Bug Fixing & Monitoring", "Security Enhancements", "Performance Tuning"],
   },
 ];
 
 
 export function Services() {
-  const [showContactDialog, setShowContactDialog] = useState(false);
-  return (
-    <section id="services" className="min-h-screen flex items-center justify-center px-6 py-20">
-      <div className="max-w-7xl w-full mx-auto">
-        {/* Header */}
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-sm font-bold tracking-widest text-primary uppercase">
-            Core Services
-          </h2>
-          <p className="text-3xl md:text-5xl font-bold text-foreground max-w-3xl mx-auto leading-tight">
-            Comprehensive solutions that drive business growth and enhance digital presence.
-          </p>
-        </div>
+   const [showContactDialog, setShowContactDialog] = useState(false);
+   return (
+     <section id="services" className="min-h-screen flex items-center justify-center px-6 py-20">
+       <div className="max-w-7xl w-full mx-auto">
+         {/* Header */}
+         <div className="text-center space-y-6 mb-20">
+           <h2 className="text-base md:text-lg font-bold tracking-widest text-primary uppercase">
+             Core Services
+           </h2>
+           <p className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground max-w-4xl mx-auto leading-tight">
+             Comprehensive solutions that drive business growth and enhance digital presence.
+           </p>
+         </div>
 
-        {/* Service Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+         {/* Service Cards */}
+         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -90,6 +96,20 @@ export function Services() {
   
                     <div className="space-y-3 flex-1">
                       <h4 className="font-semibold text-foreground text-sm uppercase tracking-wider">
+                        Technologies
+                      </h4>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {service.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <h4 className="font-semibold text-foreground text-sm uppercase tracking-wider">
                         What's Included
                       </h4>
                       <div className="space-y-2">
@@ -111,9 +131,9 @@ export function Services() {
   
                   <a
                     href="mailto:contact@ayobamizenthos.com?subject=Project Inquiry&body=Hi Ayobami,%0A%0AI'd like to discuss a project with you.%0A%0AProject Type: [Please specify]%0ABudget: [Please specify]%0ATimeline: [Please specify]%0A%0ADetails:%0A[Please provide project details]"
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground rounded-full font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 mt-6 inline-flex items-center justify-center gap-2"
+                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground rounded-full font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 inline-flex items-center justify-center gap-2 mt-6"
                   >
-                    Discuss Project
+                    Let's Work Together
                     <Mail className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
                 </div>

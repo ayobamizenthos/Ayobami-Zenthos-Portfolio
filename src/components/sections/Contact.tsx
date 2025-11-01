@@ -7,10 +7,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 
 const socials = [
-  { name: "X (Twitter)", icon: Twitter, url: "https://x.com/ayobamizenthos?t=z37l1PxtK6hyvLaM4u7jSg&s=09" },
-  { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/in/ayobamirufai/" },
-  { name: "YouTube", icon: Youtube, url: "#" },
-  { name: "Instagram", icon: Instagram, url: "https://www.instagram.com/ayobamizenthos/" },
+   { name: "X (Twitter)", icon: Twitter, url: "https://x.com/ayobamizenthos?t=z37l1PxtK6hyvLaM4u7jSg&s=09" },
+   { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/in/ayobamirufai/" },
+   { name: "Email", icon: Mail, url: "mailto:contact@ayobamizenthos.com" },
+   { name: "Instagram", icon: Instagram, url: "https://www.instagram.com/ayobamizenthos/" },
 ];
 
 export function Contact() {
@@ -127,7 +127,7 @@ ${formData.message}
           <div className="bg-card rounded-3xl p-6 md:p-8 shadow-card">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name and Email */}
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label htmlFor="contact-name" className="text-sm font-medium text-foreground">Name *</label>
                   <Input
@@ -137,7 +137,7 @@ ${formData.message}
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
                     required
-                    className={`h-12 ${errors.name ? 'border-destructive' : ''}`}
+                    className={`h-12 text-base ${errors.name ? 'border-destructive' : ''}`}
                     aria-describedby={errors.name ? "name-error" : undefined}
                     aria-invalid={!!errors.name}
                   />
@@ -157,7 +157,7 @@ ${formData.message}
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     required
-                    className={`h-12 ${errors.email ? 'border-destructive' : ''}`}
+                    className={`h-12 text-base ${errors.email ? 'border-destructive' : ''}`}
                     aria-describedby={errors.email ? "email-error" : undefined}
                   />
                   {errors.email && (
@@ -170,11 +170,11 @@ ${formData.message}
               </div>
 
               {/* Project Type and Budget */}
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">Project Type</label>
                   <Select value={formData.projectType} onValueChange={(value) => handleInputChange('projectType', value)}>
-                    <SelectTrigger className="h-12">
+                    <SelectTrigger className="h-12 text-base">
                       <SelectValue placeholder="Select project type" />
                     </SelectTrigger>
                     <SelectContent>
@@ -191,7 +191,7 @@ ${formData.message}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">Budget Range</label>
                   <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
-                    <SelectTrigger className="h-12">
+                    <SelectTrigger className="h-12 text-base">
                       <SelectValue placeholder="Select budget range" />
                     </SelectTrigger>
                     <SelectContent>
@@ -210,7 +210,7 @@ ${formData.message}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">Timeline</label>
                 <Select value={formData.timeline} onValueChange={(value) => handleInputChange('timeline', value)}>
-                  <SelectTrigger className="h-12">
+                  <SelectTrigger className="h-12 text-base">
                     <SelectValue placeholder="Select timeline" />
                   </SelectTrigger>
                   <SelectContent>
@@ -233,7 +233,7 @@ ${formData.message}
                   value={formData.message}
                   onChange={(e) => handleInputChange('message', e.target.value)}
                   required
-                  className={`min-h-32 resize-none ${errors.message ? 'border-destructive' : ''}`}
+                  className={`min-h-32 resize-none text-base ${errors.message ? 'border-destructive' : ''}`}
                   aria-describedby={errors.message ? "message-error" : undefined}
                 />
                 {errors.message && (
