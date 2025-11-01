@@ -1,4 +1,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/ayobamiz/public_html/
-    - /bin/cp -r dist/* $DEPLOYPATH
+    - /bin/rm -rf $DEPLOYPATH/*
+    - npm install
+    - npm run build
+    - /bin/cp -r dist/* $DEPLOYPATH/
