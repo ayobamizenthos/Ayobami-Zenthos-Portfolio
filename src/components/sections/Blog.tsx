@@ -128,7 +128,7 @@ export function Blog() {
                       className="text-primary hover:text-primary/80 p-0 h-auto font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
                       aria-label={`Read more about ${post.title}`}
                     >
-                      Read More →
+                      View My Articles →
                     </Button>
                   </div>
                 </div>
