@@ -108,7 +108,7 @@ export function Work() {
 
 
                 {/* View Project Button */}
-                <div className="flex justify-end pt-2">
+                <div className="flex justify-start pt-2">
                   <button
                     className="w-12 h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-110 inline-flex items-center justify-center border border-primary/20"
                     aria-label={`View ${project.title} project`}

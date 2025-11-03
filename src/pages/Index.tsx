@@ -20,13 +20,13 @@ const Index = () => {
     <ThemeProvider>
       <Helmet>
         <title>Ayobami Zenthos</title>
-        <meta name="description" content="Full-Stack Developer & Product Manager specializing in React, Node.js, and digital product strategy. Building innovative solutions for the African tech ecosystem." />
-        <meta name="keywords" content="full-stack developer, product manager, React, Node.js, web development, mobile apps, Lagos, Nigeria, African tech" />
+        <meta name="description" content="Full-Stack Developer & Product Manager crafting digital experiences through strategic web design, distinctive brand identity, and intuitive mobile applications. Specializing in React, Node.js, and African tech innovation." />
+        <meta name="keywords" content="full-stack developer, product manager, React, Node.js, web development, mobile apps, UI/UX design, Lagos, Nigeria, African tech, software engineer, portfolio" />
         <link rel="canonical" href="https://ayobamizenthos.github.io/Ayobami-Zenthos-Portfolio/" />
 
         {/* Open Graph */}
         <meta property="og:title" content="Ayobami Zenthos - Full-Stack Developer & Product Manager" />
-        <meta property="og:description" content="Full-Stack Developer & Product Manager crafting digital experiences through strategic web design, distinctive brand identity, and intuitive mobile applications." />
+        <meta property="og:description" content="Full-Stack Developer & Product Manager crafting digital experiences through strategic web design, distinctive brand identity, and intuitive mobile applications. Specializing in React, Node.js, and African tech innovation." />
         <meta property="og:url" content="https://ayobamizenthos.github.io/Ayobami-Zenthos-Portfolio/" />
         <meta property="og:type" content="website" />
 
@@ -51,7 +51,10 @@ const Index = () => {
               "Product Management",
               "Web Development",
               "Mobile Applications",
-              "African Tech Ecosystem"
+              "UI/UX Design",
+              "African Tech Ecosystem",
+              "Full-Stack Development",
+              "Digital Strategy"
             ],
             "address": {
               "@type": "PostalAddress",

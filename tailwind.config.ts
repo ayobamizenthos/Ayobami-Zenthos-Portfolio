@@ -9,6 +9,8 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
+        "xs": "475px",
+        "3xl": "1600px",
         "2xl": "1400px",
       },
     },
@@ -100,7 +102,7 @@ export default {
     },
   },
   plugins: [
-    import("tailwindcss-animate"),
-    import("@tailwindcss/typography"),
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
   ],
 } satisfies Config;

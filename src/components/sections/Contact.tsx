@@ -115,14 +115,14 @@ ${formData.message}
         <div className="text-center space-y-3 mb-12">
           <h2 className="text-sm font-bold tracking-widest text-primary uppercase">Contact</h2>
           <p className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-            Let's build something great together.
+            Ready to scale your business with technology?
           </p>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Ready to start your next project? Fill out the form below and I'll get back to you within 24 hours.
+            Let's discuss how we can turn your vision into reality. I respond within 24 hours and love bringing innovative ideas to life.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
           {/* Contact Form */}
           <div className="bg-card rounded-3xl p-6 md:p-8 shadow-card">
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -258,7 +258,7 @@ ${formData.message}
                 ) : (
                   <div className="flex items-center gap-2">
                     <Send className="w-5 h-5" />
-                    Send Message
+                    Let's Start Building
                   </div>
                 )}
               </Button>

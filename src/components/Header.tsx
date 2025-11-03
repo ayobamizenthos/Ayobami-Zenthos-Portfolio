@@ -4,6 +4,7 @@ import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { trackNavigationClick } from "@/lib/analytics";
 
 interface MenuItem {
   label: string;
@@ -23,17 +24,11 @@ const menuItems: MenuItem[] = [
   {
     label: "Blog",
     submenu: [
-      { label: "Portfolio Blog", href: "/blog", external: false },
+      { label: "Featured Articles", href: "#blog", external: false },
       { label: "Hashnode Blog", href: "https://zenthosinsights.hashnode.dev", external: true },
     ]
   },
-  {
-    label: "Technical Writing Portfolio",
-    submenu: [
-      { label: "Portfolio Blog", href: "/blog", external: false },
-      { label: "Hashnode", href: "https://zenthosinsights.hashnode.dev", external: true },
-    ]
-  },
+  { label: "Contact", action: () => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }) },
 ];
 
 export function Header() {
@@ -41,6 +36,7 @@ export function Header() {
 
   const handleMenuClick = (item: MenuItem) => {
     if (item.action) {
+      trackNavigationClick(item.label.toLowerCase());
       item.action();
       setMobileMenuOpen(false);
     } else if (item.submenu) {
@@ -64,7 +60,7 @@ export function Header() {
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="ghost"
-                      className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                      className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
                       onMouseEnter={() => {}} // Trigger hover state
                     >
                       {item.label}
@@ -77,9 +73,11 @@ export function Header() {
                         key={subItem.label}
                         onClick={() => {
                           if (subItem.external) {
+                            trackNavigationClick(`blog_${subItem.label.toLowerCase().replace(' ', '_')}`);
                             window.open(subItem.href, '_blank');
                           } else {
-                            window.location.href = subItem.href;
+                            trackNavigationClick('blog_section');
+                            document.getElementById(subItem.href.substring(1))?.scrollIntoView({ behavior: "smooth" });
                           }
                         }}
                         className="cursor-pointer hover:bg-primary/10 hover:text-primary font-medium"
@@ -95,7 +93,7 @@ export function Header() {
                   <TooltipTrigger asChild>
                     <Button
                       variant="ghost"
-                      className="text-sm font-medium hover:text-primary transition-colors"
+                      className="text-sm font-medium hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
                       onClick={() => handleMenuClick(item)}
                     >
                       {item.label}
@@ -114,7 +112,7 @@ export function Header() {
         <div className="md:hidden flex-1 flex justify-end">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-foreground">
+              <Button variant="ghost" size="icon" className="text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background" aria-label="Open navigation menu">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
@@ -130,12 +128,14 @@ export function Header() {
                         <Button
                           key={subItem.label}
                           variant="ghost"
-                          className="justify-start text-sm hover:text-primary hover:bg-primary/5 transition-all duration-300 py-3 ml-4 w-[calc(100%-2rem)]"
+                          className="justify-start text-sm hover:text-primary hover:bg-primary/5 transition-all duration-300 py-3 ml-4 w-[calc(100%-2rem)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
                           onClick={() => {
                             if (subItem.external) {
+                              trackNavigationClick(`blog_${subItem.label.toLowerCase().replace(' ', '_')}`);
                               window.open(subItem.href, '_blank');
                             } else {
-                              window.location.href = subItem.href;
+                              trackNavigationClick('blog_section');
+                              document.getElementById(subItem.href.substring(1))?.scrollIntoView({ behavior: "smooth" });
                             }
                             setMobileMenuOpen(false);
                           }}
@@ -149,7 +149,7 @@ export function Header() {
                     <Button
                       key={item.label}
                       variant="ghost"
-                      className="justify-start text-base font-medium hover:text-primary hover:bg-primary/5 transition-all duration-300 py-6"
+                      className="justify-start text-base font-medium hover:text-primary hover:bg-primary/5 transition-all duration-300 py-6 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
                       onClick={() => handleMenuClick(item)}
                     >
                       {item.label}

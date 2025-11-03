@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Home, Briefcase, FileText, Mail } from "lucide-react";
+import { Home, Briefcase, FolderOpen, FileText, Mail } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { trackNavigationClick } from "@/lib/analytics";
 
 const navItems = [
   { id: "hero", label: "Home", icon: Home },
   { id: "services", label: "Services", icon: Briefcase },
-  { id: "work", label: "Works", icon: Briefcase },
+  { id: "work", label: "Works", icon: FolderOpen },
   { id: "blog", label: "Blog", icon: FileText },
   { id: "contact", label: "Contact", icon: Mail },
 ];
@@ -49,7 +50,13 @@ export function Navigation() {
   }, [activeSection]);
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    if (id === 'blog') {
+      trackNavigationClick('blog_external');
+      window.open('https://zenthosinsights.hashnode.dev', '_blank');
+    } else {
+      trackNavigationClick(id);
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -63,12 +70,12 @@ export function Navigation() {
                 <TooltipTrigger asChild>
                   <button
                     onClick={() => scrollToSection(id)}
-                    className={`relative p-3 rounded-full transition-all duration-[180ms] ease-out ${
+                    className={`relative p-3 rounded-full transition-all duration-[180ms] ease-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background ${
                       activeSection === id
                         ? "bg-primary text-primary-foreground shadow-glow scale-110"
                         : "hover:bg-muted text-muted-foreground hover:text-foreground hover:scale-105"
                     }`}
-                    aria-label={label}
+                    aria-label={`Navigate to ${label} section`}
                     aria-current={activeSection === id ? "page" : undefined}
                   >
                     <Icon className="w-5 h-5" />
@@ -92,12 +99,12 @@ export function Navigation() {
                 <TooltipTrigger asChild>
                   <button
                     onClick={() => scrollToSection(id)}
-                    className={`relative p-4 rounded-full transition-all duration-[180ms] ease-out min-h-[48px] min-w-[48px] flex items-center justify-center ${
+                    className={`relative p-4 rounded-full transition-all duration-[180ms] ease-out min-h-[48px] min-w-[48px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background ${
                       activeSection === id
                         ? "bg-primary text-primary-foreground shadow-glow scale-110"
                         : "hover:bg-muted text-muted-foreground hover:text-foreground hover:scale-105"
                     }`}
-                    aria-label={label}
+                    aria-label={`Navigate to ${label} section`}
                     aria-current={activeSection === id ? "page" : undefined}
                   >
                     <Icon className="w-4 h-4" />
