@@ -3,13 +3,16 @@ import { ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { trackBlogClick, trackNavigationClick } from "@/lib/analytics";
 import avzdaxImage from "@/assets/Gemini_Generated_Image_bfpn89bfpn89bfpn.png";
+import devJourneyImage from "@/assets/dev journey.webp";
+import mobileDesignImage from "@/assets/mobile design.webp";
+import productImage from "@/assets/product.jpeg";
 
 const allBlogPosts = [
   {
     id: 3,
     title: "Building in Public: Why Visibility Matters in Tech",
     category: "Career",
-    image: "/src/assets/dev journey.webp",
+    image: devJourneyImage,
     excerpt: "When I started learning to code, I believed skill was everything. Turns out, visibility is just as powerful. Here's my journey from building quietly to creating opportunities through sharing my story.",
     readTime: "5 min read",
     date: "2025-01-28"
@@ -18,7 +21,7 @@ const allBlogPosts = [
     id: 2,
     title: "Mobile-First Design: Why It Matters More Than Ever",
     category: "Responsive design",
-    image: "/src/assets/mobile design.webp",
+    image: mobileDesignImage,
     excerpt: "Back in the early days of the web, desktop screens ruled everything. Designers built wide, beautiful layouts — then tried to 'make them fit' on smaller screens later. That approach doesn't work anymore. Today, the web is mobile.",
     readTime: "6 min read",
     date: "2025-10-13"
@@ -27,7 +30,7 @@ const allBlogPosts = [
     id: 1,
     title: "Why Product Management is the Bridge Between Technology and Business Success",
     category: "Product Strategy",
-    image: "/src/assets/product.jpeg",
+    image: productImage,
     excerpt: "Drawing from my experience building platforms like Haven Stay, I've learned that great products aren't just well-coded—they're strategically positioned to solve real problems and drive measurable business outcomes.",
     readTime: "6 min read",
     date: "2025-10-14"
